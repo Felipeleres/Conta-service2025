@@ -5,6 +5,8 @@ import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Builder
@@ -31,8 +33,8 @@ public class Conta {
     @Column
     private BigDecimal saldo;
 
-    //    @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    //    private List<Pix> historicoPix = new ArrayList<>();
+    @OneToMany(mappedBy = "conta",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    private List<Pix> historicoPix = new ArrayList<>();
 
     public void sacar(BigDecimal valor){
         saldo = this.saldo.subtract(valor);

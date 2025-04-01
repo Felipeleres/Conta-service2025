@@ -1,0 +1,18 @@
+2025-04-01 12:08:37.882542-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]PIX"; expected "PREPARE"; SQL statement:
+PIX [42001-232]
+2025-04-01 12:08:44.152029-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]PIX"; expected "PREPARE"; SQL statement:
+PIX [42001-232]
+2025-04-01 12:08:52.786643-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]CONTA ID CHAVE_PIX_PAGADOR"; expected "COMMIT, CREATE, CALL, CHECKPOINT, COMMENT"; SQL statement:
+CONTA ID CHAVE_PIX_PAGADOR [42001-232]
+2025-04-01 12:08:56.176970-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]CONTA"; expected "COMMIT, CREATE, CALL, CHECKPOINT, COMMENT"; SQL statement:
+CONTA [42001-232]
+2025-04-01 12:08:59.613484-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]CONTA"; expected "COMMIT, CREATE, CALL, CHECKPOINT, COMMENT"; SQL statement:
+CONTA [42001-232]
+2025-04-01 12:09:08.314667-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]SELEC * FROM PIX"; expected "SAVEPOINT, SCRIPT, SHUTDOWN"; SQL statement:
+SELEC * FROM PIX [42001-232]
