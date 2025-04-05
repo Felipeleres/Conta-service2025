@@ -6,6 +6,7 @@ import com.bootcamp.conta_service_2025.dto.ContaResponseDTO;
 import com.bootcamp.conta_service_2025.exception.ContaExistenteException;
 import com.bootcamp.conta_service_2025.exception.ContaNaoExistenteException;
 import com.bootcamp.conta_service_2025.feign.BacenService;
+import com.bootcamp.conta_service_2025.feign.dto.ChaveRequestDTO;
 import com.bootcamp.conta_service_2025.model.Conta;
 import com.bootcamp.conta_service_2025.repository.ContaRepository;
 import jakarta.transaction.Transactional;
@@ -102,10 +103,14 @@ public class ContaService {
         Conta contaExistente = contaRepository.findById(id)
                 .orElseThrow(() -> new ContaNaoExistenteException("Conta não existe."));
 
+        bacenService.atualizarChave(contaExistente.getChavePix(), contaRequestDTO.getChavePix());
+
         contaExistente.setNomeTitular(contaRequestDTO.getNomeTitular());
         contaExistente.setNumeroConta(contaRequestDTO.getNumeroConta());
         contaExistente.setNumeroAgencia(contaRequestDTO.getNumeroAgencia());
         contaExistente.setChavePix(contaRequestDTO.getChavePix());
+
+
 
         contaExistente = contaRepository.save(contaExistente);
 

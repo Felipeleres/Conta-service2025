@@ -5,6 +5,7 @@ import com.bootcamp.conta_service_2025.dto.PixRequestDTO;
 import com.bootcamp.conta_service_2025.dto.PixResponseDTO;
 import com.bootcamp.conta_service_2025.exception.ContaExistenteException;
 import com.bootcamp.conta_service_2025.exception.ContaNaoExistenteException;
+import com.bootcamp.conta_service_2025.exception.PixNegativoException;
 import com.bootcamp.conta_service_2025.exception.SaldoInsuficienteException;
 import com.bootcamp.conta_service_2025.feign.BacenService;
 import com.bootcamp.conta_service_2025.model.Conta;
@@ -30,7 +31,7 @@ public class PixService {
     public PixResponseDTO realizaPix(PixRequestDTO pixRequestDTO){
 
         if(pixRequestDTO.getValor().compareTo(BigDecimal.ZERO)<= 0 ){
-            throw new RuntimeException("Não pode fazer pix negativo");
+            throw new PixNegativoException("Não pode fazer pix negativo");
         }
 
         Optional<Pix> existingPix = pixRepository.findByIdempotencia(pixRequestDTO.getIdempotencia());
@@ -44,7 +45,7 @@ public class PixService {
         Optional<Conta> contaPagadorOptional = contaRepository.findByChavePix(chavePagador);
 
        if(contaPagadorOptional.isEmpty()){
-          throw new ContaExistenteException(String.format("Conta coma  chava %s não existe",pixRequestDTO.getChavePixPagador()));
+          throw new ContaExistenteException(String.format("Conta com a  chave %s não existe",pixRequestDTO.getChavePixPagador()));
       }
 
       String chaveRecebedor = bacenService.buscaChave(pixRequestDTO.getChavePixRecebedor()).getChave();
@@ -104,4 +105,5 @@ if (contaRecebedorOptional.isEmpty()) {
                 .build();
 
     }
+
 }

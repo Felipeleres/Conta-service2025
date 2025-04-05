@@ -3,9 +3,9 @@ package com.bootcamp.conta_service_2025.feign;
 import com.bootcamp.conta_service_2025.feign.dto.ChaveRequestDTO;
 import com.bootcamp.conta_service_2025.feign.dto.ChaveResponseDTO;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @FeignClient(
         contextId = "BacenClient",
@@ -19,4 +19,8 @@ public interface BacenClient {
 
     @GetMapping(value = "/chaves/{chave}")
     ChaveResponseDTO buscaChave(@PathVariable final String chave);
+
+    @PutMapping(value = "/chaves/{chave}")
+    ChaveResponseDTO  atualizarChave(@PathVariable final String chave, @RequestBody ChaveRequestDTO chaveRequestDTO);
+
 }

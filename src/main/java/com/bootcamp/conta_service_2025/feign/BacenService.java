@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -37,7 +39,20 @@ public class BacenService {
         }
     }
 
+    public  ChaveResponseDTO atualizarChave(final String chaveAtual, final String chaveNova){
+        try{
+            ChaveRequestDTO chaveRequestDTO = ChaveRequestDTO.builder()
+                    .chave(chaveNova)
+                    .ativa(Boolean.TRUE)
+                    .build();
 
+            return bacenClient.atualizarChave(chaveAtual, chaveRequestDTO);
 
+        } catch (Exception ex) {
+        log.error("Erro ao chamar a API para atualizar chave do Bacen", ex);
+        throw new ErroIntegracaoBacenException("Erro ao cadastrar a chave no Bacen");
+        }
+
+    }
 
 }
